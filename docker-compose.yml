@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  api:
+    image: api
+    build:
+      context: .
+      dockerfile: Api/Dockerfile
+
+      image: microsoft/mssql-server-linux:2017-lates
