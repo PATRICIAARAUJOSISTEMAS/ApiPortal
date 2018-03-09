@@ -1,5 +1,5 @@
 ﻿using Api.Controllers.Users;
-using Api.Services.Interfaces;
+using Domain.Interfaces;
 using Domain.Request;
 using Domain.Requests;
 using Domain.Responses;

@@ -1,16 +1,16 @@
-﻿using AutoMapper;
+﻿using Api.AppStart;
+using Api.Settings;
+using AutoMapper;
+using Data.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Api.AppStart;
-using Data.Context;
-using Api.Settings;
-using System.Reflection;
 using System;
-using Microsoft.EntityFrameworkCore.Diagnostics;
+using System.Reflection;
 
 namespace Api
 {
@@ -35,7 +35,7 @@ namespace Api
             app.UseSwagger()
             .UseSwaggerUI(s =>
             {
-                s.SwaggerEndpoint("/swagger/swagger/v1/swagger.json", "My API V1");
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
             //Error swagger not found

@@ -1,14 +1,11 @@
-﻿using Api.Services.Base;
-using Domain.Requests;
+﻿using Domain.Requests;
 using Domain.Responses;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
-namespace Api.Services.Interfaces
+namespace Domain.Interfaces
 {
-    public interface IProductService : IScopedServiceBase
+    public interface IProductService
     {
         Task<IEnumerable<ProductResponse>> GetProductByAsync(ProductRequest productRequest);
 

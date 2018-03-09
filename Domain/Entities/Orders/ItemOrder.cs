@@ -1,8 +1,4 @@
-﻿using Domain.Entities.Products;
-using Domain.Resources;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Domain.Resources;
 
 namespace Domain.Entities.Orders
 {

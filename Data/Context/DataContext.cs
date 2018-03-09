@@ -1,8 +1,8 @@
-using Microsoft.EntityFrameworkCore;
-using Domain.Entities.Users;
 using Data.Context.ConfigEntity;
-using Domain.Entities.Products;
 using Domain.Entities.Orders;
+using Domain.Entities.Products;
+using Domain.Entities.Users;
+using Microsoft.EntityFrameworkCore;
 
 namespace Data.Context
 {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Domain.Requests
+﻿namespace Domain.Requests
 {
     public class ProductRequest
     {

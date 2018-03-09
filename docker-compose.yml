@@ -7,4 +7,5 @@ services:
       context: .
       dockerfile: Api/Dockerfile
 
-      image: microsoft/mssql-server-linux:2017-lates
+  sql.data:
+    image: microsoft/mssql-server-linux:2017-latest

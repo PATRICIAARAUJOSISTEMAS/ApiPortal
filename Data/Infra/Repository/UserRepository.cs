@@ -1,9 +1,6 @@
 ﻿using Data.Context;
 using Domain.Entities.Users;
 using Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Data.Infra.Repository
 {

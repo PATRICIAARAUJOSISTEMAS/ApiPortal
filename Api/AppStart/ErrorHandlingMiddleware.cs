@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Api.Exceptions;
+using Domain.Responses;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using Api.Exceptions;
-using Domain.Base;
-using Domain.Responses;
 
 public class ErrorHandlingMiddleware
 {

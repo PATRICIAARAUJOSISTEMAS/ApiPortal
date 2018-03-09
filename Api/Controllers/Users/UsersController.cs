@@ -1,5 +1,5 @@
 ﻿using Api.Controllers.Base;
-using Api.Services.Interfaces;
+using Domain.Interfaces;
 using Domain.Request;
 using Domain.Requests;
 using Microsoft.AspNetCore.Authentication;
@@ -46,6 +46,8 @@ namespace Api.Controllers.Users
         [HttpGet("users")]
         public async Task<IActionResult> GetUser([FromBody]UserRequest userRequest)
         {
+            if (UserId() == null)
+                return Unauthorized();
             var user = await _userService.GetAllByAsync(userRequest);
 
             return Ok(user);

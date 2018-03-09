@@ -1,5 +1,4 @@
-﻿using Api.Services.Interfaces;
-using AutoMapper;
+﻿using AutoMapper;
 using Domain.Entities.Products;
 using Domain.Interfaces;
 using Domain.Requests;

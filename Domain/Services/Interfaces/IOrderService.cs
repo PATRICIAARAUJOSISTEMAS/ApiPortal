@@ -1,12 +1,11 @@
-﻿using Api.Services.Base;
-using Domain.Requests;
+﻿using Domain.Requests;
 using Domain.Responses;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Api.Services.Interfaces
+namespace Domain.Interfaces
 {
-    public interface IOrderService : IScopedServiceBase
+    public interface IOrderService
     {
         Task<IEnumerable<OrderResponse>> GetOrderByAsync(OrderRequest orderRequest);
 

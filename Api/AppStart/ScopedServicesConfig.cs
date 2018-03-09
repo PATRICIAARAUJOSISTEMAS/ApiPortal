@@ -1,5 +1,4 @@
-﻿using Api.Services.Interfaces;
-using Data.Infra.Repository;
+﻿using Data.Infra.Repository;
 using Domain.Interfaces;
 using Domain.Orders;
 using Domain.Products;
