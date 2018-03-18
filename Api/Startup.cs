@@ -45,6 +45,7 @@ namespace Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
+            services.AddDbContext<DataContext>(x => x.UseInMemoryDatabase("TestDb"));
             services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),

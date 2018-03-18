@@ -6,6 +6,8 @@ services:
     build:
       context: .
       dockerfile: Api/Dockerfile
+    depends_on:
+      - sql.data
 
   sql.data:
     image: microsoft/mssql-server-linux:2017-latest

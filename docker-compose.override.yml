@@ -3,6 +3,14 @@ version: '3'
 services:
   api:
     environment:
+      - ConnectionString=${DefaultConnection:-Server=sql.data;Database=apidb;User Id=sa;Password=Pass@word}
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "80"
+      - "5000:80"
+
+  sql.data:
+    environment:
+      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+    ports:
+      - "5433:1433"

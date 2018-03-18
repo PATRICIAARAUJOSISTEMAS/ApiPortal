@@ -10,10 +10,10 @@ namespace Data.Context
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
-            Database.SetCommandTimeout(180);
+            //   Database.SetCommandTimeout(180);
         }
 
-        protected DataContext() => Database.SetCommandTimeout(180);
+        //  protected DataContext() => Database.SetCommandTimeout(180);
 
         public DbSet<ItemOrder> ItemOrder { get; set; }
         public DbSet<Order> Order { get; set; }
