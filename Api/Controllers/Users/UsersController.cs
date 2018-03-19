@@ -39,10 +39,12 @@ namespace Api.Controllers.Users
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
 
+            var usuario = UserId();
+
             return Ok();
         }
 
-        [Authorize]
+        // [Authorize]
         [HttpGet("users")]
         public async Task<IActionResult> GetUser([FromQuery]UserRequest userRequest)
         {
@@ -56,7 +58,7 @@ namespace Api.Controllers.Users
         public async Task<IActionResult> SingUp([FromBody]UserRequest userRequest)
         {
             var user = await _userService.AddAsync(userRequest);
-
+            var usuario = UserId();
             return Ok(user);
         }
     }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Api.Controllers.Orders
 {
-    [Authorize]
+    // [Authorize]
     [Route("orders")]
     public class OrderController : BaseController
     {

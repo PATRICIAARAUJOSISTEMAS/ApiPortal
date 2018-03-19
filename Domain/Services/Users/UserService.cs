@@ -59,7 +59,6 @@ namespace Domain.Users
             await _userRepository.PostAsync(user);
 
             return _responseBase;
-            //_context.SaveChanges(); não esquecer de mandar salvar essas porra
         }
 
         public async Task<UserResponse> AuthenticateAsync(LoginRequest loginRequest)
@@ -93,7 +92,7 @@ namespace Domain.Users
         public async Task<IEnumerable<UserResponse>> GetAllByAsync(UserRequest userRequest)
         {
             var user = await _userRepository.GetAsync(f =>
-                userRequest.FullName.Equals(userRequest.FullName.ToUpper()));
+                userRequest.NickName.Equals(userRequest.NickName.ToUpper()));
 
             return _mapper.Map<IEnumerable<UserResponse>>(user);
         }

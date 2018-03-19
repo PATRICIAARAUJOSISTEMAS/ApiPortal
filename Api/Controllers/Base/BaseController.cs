@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Security.Claims;
 
 namespace Api.Controllers.Base
 {
+    // [Authorize]
     public class BaseController : Controller
     {
         [HttpGet]

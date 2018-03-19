@@ -14,7 +14,7 @@ namespace Api.Controllers.Products
 
         public ProductController(IProductService productService) => _productService = productService;
 
-        [Authorize]
+        // [Authorize]
         [HttpGet("products")]
         public async Task<IActionResult> GetProduct([FromQuery]ProductRequest productRequest)
         {
@@ -25,7 +25,7 @@ namespace Api.Controllers.Products
             return Ok(product);
         }
 
-        [Authorize]
+        // [Authorize]
         [HttpPost("product")]
         public async Task<IActionResult> Post([FromBody]ProductRequest productRequest)
         {
@@ -36,7 +36,7 @@ namespace Api.Controllers.Products
             return Ok(user);
         }
 
-        [Authorize]
+        // [Authorize]
         [HttpPut("product")]
         public IActionResult Put([FromBody]ProductRequest productRequest)
         {

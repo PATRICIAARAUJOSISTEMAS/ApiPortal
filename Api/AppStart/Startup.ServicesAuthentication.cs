@@ -13,6 +13,10 @@ namespace Api
                 options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = Configuration["Auth0:Domain"];
+                options.Audience = Configuration["Auth0:ApiIdentifier"];
             })
             .AddCookie()
             .AddOpenIdConnect("Auth0", options =>

@@ -63,6 +63,9 @@ namespace Api
             AddServicesSwagger(services);
             services.Configure<AppSettings>(Configuration.GetSection("Auth0"));
             services.AddMvc();
+
+            services.AddAuthorization(options =>
+            options.AddPolicy("NameIdentifier", policy => policy.RequireClaim("NameIdentifier")));
         }
     }
 }
