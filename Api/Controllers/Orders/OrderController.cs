@@ -7,35 +7,37 @@ using System.Threading.Tasks;
 
 namespace Api.Controllers.Orders
 {
+    [Authorize]
     [Route("orders")]
     public class OrderController : BaseController
     {
         private IOrderService _orderService;
+        private IUserService _userService;
 
-        public OrderController(IOrderService orderService) => _orderService = orderService;
-
-        [AllowAnonymous]
-        [HttpGet("orders")]
-        public async Task<IActionResult> GetAsync([FromBody]OrderRequest orderRequest)
+        public OrderController(IOrderService orderService, IUserService userService)
         {
-            if (UserId() == null)
-                return Unauthorized();
-            var user = await _orderService.GetOrderByAsync(orderRequest);
-
-            return Ok(user);
+            _orderService = orderService;
+            _userService = userService;
         }
 
-        [AllowAnonymous]
+        [HttpGet("orders")]
+        public async Task<IActionResult> GetAsync([FromQuery]OrderRequest orderRequest)
+        {
+            var userIdGuid = UserId().ToString();
+            var user = _userService.GetByIdAsync(UserId().ToString());
+            var order = await _orderService.GetOrderByAsync(orderRequest, userIdGuid);
+
+            return Ok(order);
+        }
+
         [HttpPost("order")]
         public async Task<IActionResult> Post([FromBody]OrderRequest orderRequest)
         {
-            if (UserId() == null)
-                return Unauthorized();
-
+            var userIdGuid = UserId().ToString();
             orderRequest.Id = UserId().ToString();
-            var user = await _orderService.PostAsync(orderRequest);
+            var order = await _orderService.PostAsync(orderRequest, userIdGuid);
 
-            return Ok(user);
+            return Ok(order);
         }
     }
 }

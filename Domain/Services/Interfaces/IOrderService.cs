@@ -7,9 +7,9 @@ namespace Domain.Interfaces
 {
     public interface IOrderService
     {
-        Task<IEnumerable<OrderResponse>> GetOrderByAsync(OrderRequest orderRequest);
+        Task<IEnumerable<OrderResponse>> GetOrderByAsync(OrderRequest orderRequest, string userId);
 
-        Task<ResponseBase> PostAsync(OrderRequest orderRequest);
+        Task<ResponseBase> PostAsync(OrderRequest orderRequest, string userId);
 
         Task<ResponseBase> PutAsync(OrderRequest orderRequest);
     }

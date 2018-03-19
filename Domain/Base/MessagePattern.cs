@@ -15,6 +15,7 @@ namespace Domain.Base
         [NotMapped]
         public List<string> Errors { get; set; }
 
+        [NotMapped]
         public bool IsFailure { get; set; }
 
         public void AddMessage(string mensage)

@@ -10,7 +10,7 @@ namespace Api.Controllers.Base
         public Guid UserId()
         {
             var user = User as ClaimsPrincipal;
-            return Guid.Parse(user.Identity.ToString());
+            return user.Claims.GetType().GUID;
         }
     }
 }

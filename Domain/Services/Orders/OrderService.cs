@@ -43,9 +43,9 @@ namespace Domain.Orders
             return _responseBase;
         }
 
-        public async Task<IEnumerable<OrderResponse>> GetOrderByAsync(OrderRequest orderRequest)
+        public async Task<IEnumerable<OrderResponse>> GetOrderByAsync(OrderRequest orderRequest, string userId)
         {
-            var order = await _orderRepository.GetAsync(p => p.UserId == orderRequest.User.Id);
+            var order = await _orderRepository.GetAsync(p => p.UserId == userId);
 
             return _mapper.Map<IEnumerable<OrderResponse>>(order);
         }
@@ -56,7 +56,7 @@ namespace Domain.Orders
             return _mapper.Map<OrderResponse>(user);
         }
 
-        public async Task<ResponseBase> PostAsync(OrderRequest orderRequest)
+        public async Task<ResponseBase> PostAsync(OrderRequest orderRequest, string userId)
         {
             if (orderRequest == null)
             {
@@ -64,7 +64,7 @@ namespace Domain.Orders
                 return _responseBase;
             }
 
-            var order = CreateOrder(orderRequest);
+            var order = CreateOrder(orderRequest, userId);
             var itens = CreateItens(orderRequest.Itens, order.Id);
 
             if (order.IsFailure || itens.Any(f => f.IsFailure))
@@ -116,10 +116,9 @@ namespace Domain.Orders
             return itemOrder;
         }
 
-        private Order CreateOrder(OrderRequest orderRequest)
+        private Order CreateOrder(OrderRequest orderRequest, string userId)
         {
-            var user = _mapper.Map<User>(orderRequest.User);
-            var order = new Order(Guid.NewGuid().ToString(), user.Id);
+            var order = new Order(Guid.NewGuid().ToString(), userId);
             return order;
         }
     }

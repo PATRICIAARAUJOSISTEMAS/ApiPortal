@@ -11,6 +11,10 @@ namespace Domain.Entities.Orders
             SetQuantity(quantity);
         }
 
+        protected ItemOrder()
+        {
+        }
+
         public string OrderId { get; private set; }
 
         public string ProductId { get; private set; }

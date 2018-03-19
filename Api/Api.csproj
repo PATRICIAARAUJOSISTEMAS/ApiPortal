@@ -5,17 +5,26 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Interfaces\**" />
+    <Compile Remove="Migrations\**" />
     <Compile Remove="Services\**" />
     <Compile Remove="Settings\**" />
     <Content Remove="Interfaces\**" />
+    <Content Remove="Migrations\**" />
     <Content Remove="Services\**" />
     <Content Remove="Settings\**" />
     <EmbeddedResource Remove="Interfaces\**" />
+    <EmbeddedResource Remove="Migrations\**" />
     <EmbeddedResource Remove="Services\**" />
     <EmbeddedResource Remove="Settings\**" />
     <None Remove="Interfaces\**" />
+    <None Remove="Migrations\**" />
     <None Remove="Services\**" />
     <None Remove="Settings\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Migrations\20180319013204_Api.cs" />
+    <Compile Include="Migrations\20180319013204_Api.Designer.cs" />
+    <Compile Include="Migrations\DataContextModelSnapshot.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Auth0.AuthenticationApi" Version="4.3.1" />
@@ -23,11 +32,18 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.0-preview1-final" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="2.2.0" />
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj" />
   </ItemGroup>
-  <ProjectExtensions><VisualStudio><UserProperties Properties_4launchSettings_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties Properties_4launchSettings_1json__JSONSchema="" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

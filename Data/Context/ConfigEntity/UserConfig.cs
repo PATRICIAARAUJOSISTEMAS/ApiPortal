@@ -12,17 +12,17 @@ namespace Data.Context.ConfigEntity
 
             entityType.Property(f => f.Email)
                 .IsRequired()
-                .HasMaxLength(30);
+                .HasMaxLength(500);
 
             entityType.Property(f => f.FirstName)
                 .IsRequired()
-                .HasMaxLength(30);
+                .HasMaxLength(500);
 
             entityType.Property(f => f.FullName)
-                .HasMaxLength(100);
+                .HasMaxLength(500);
 
             entityType.Property(f => f.NickName)
-                .HasMaxLength(100);
+                .HasMaxLength(500);
 
             entityType.Property(f => f.Registration)
                 .IsRequired();

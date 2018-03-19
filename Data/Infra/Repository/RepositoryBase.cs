@@ -18,7 +18,7 @@ namespace Data.Infra.Repository
 
         public async Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            return await _context.Set<TEntity>().Where(predicate).ToListAsync();
+            return await _context.Set<TEntity>().Where(predicate)?.ToListAsync();
         }
 
         public async Task<TEntity> GetByIdAsync(string id) => await _context.Set<TEntity>().FindAsync(id);

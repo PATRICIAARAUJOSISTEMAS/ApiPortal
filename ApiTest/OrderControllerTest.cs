@@ -5,6 +5,7 @@ using Domain.Responses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,10 +16,12 @@ namespace ApiTest
     public class OrderControllerTest
     {
         private readonly Mock<IOrderService> _repoMock;
+        private readonly Mock<IUserService> _userMock;
 
         public OrderControllerTest()
         {
             _repoMock = new Mock<IOrderService>();
+            _userMock = new Mock<IUserService>();
         }
 
         [TestMethod]
@@ -27,10 +30,10 @@ namespace ApiTest
             var orderRequest = CreateOrderRequest();
             var OrderFake = GetOrderFake();
 
-            var product = _repoMock.Setup(f => f.GetOrderByAsync(orderRequest)).Returns(Task.FromResult(OrderFake));
+            var product = _repoMock.Setup(f => f.GetOrderByAsync(orderRequest, Guid.NewGuid().ToString())).Returns(Task.FromResult(OrderFake));
             Assert.IsNotNull(product, "Pedido invalido");
 
-            var productController = new OrderController(_repoMock.Object);
+            var productController = new OrderController(_repoMock.Object, _userMock.Object);
             var actionResult = await productController.GetAsync(orderRequest);
             Assert.IsNotNull(actionResult, "Pedido não encontradoa");
 
@@ -43,10 +46,10 @@ namespace ApiTest
             var productRequest = CreateOrderRequest();
             var baseResponse = GetResponse().FirstOrDefault();
 
-            var product = _repoMock.Setup(f => f.PostAsync(productRequest)).Returns(Task.FromResult(baseResponse));
+            var product = _repoMock.Setup(f => f.PostAsync(productRequest, Guid.NewGuid().ToString())).Returns(Task.FromResult(baseResponse));
             Assert.IsNotNull(product, "Produto Invalido");
 
-            var productController = new OrderController(_repoMock.Object);
+            var productController = new OrderController(_repoMock.Object, _userMock.Object);
             var actionResult = await productController.Post(productRequest);
             Assert.IsNotNull(actionResult, "Produto não encontrado");
 
@@ -73,7 +76,6 @@ namespace ApiTest
                     Quantity = 2.00M,
                 }
             },
-                User = null
             };
         }
     }

@@ -39,15 +39,13 @@ namespace Api.Controllers.Users
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
 
-            return Ok(claimsPrincipal.Identity);
+            return Ok();
         }
 
-        [AllowAnonymous]
+        [Authorize]
         [HttpGet("users")]
-        public async Task<IActionResult> GetUser([FromBody]UserRequest userRequest)
+        public async Task<IActionResult> GetUser([FromQuery]UserRequest userRequest)
         {
-            if (UserId() == null)
-                return Unauthorized();
             var user = await _userService.GetAllByAsync(userRequest);
 
             return Ok(user);

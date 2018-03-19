@@ -6,6 +6,5 @@ namespace Domain.Requests
     {
         public string Id { get; set; }
         public ICollection<ItemRequest> Itens { get; set; }
-        public UserRequest User { get; set; }
     }
 }

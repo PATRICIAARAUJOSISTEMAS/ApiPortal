@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore;
+﻿using Data.Context;
+using Data.Infra.Extensions;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
 namespace Api
@@ -13,7 +15,9 @@ namespace Api
 
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            BuildWebHost(args)
+                .MigrateDbContext<DataContext>((context, services) => { })
+                .Run();
         }
     }
 }

@@ -14,9 +14,9 @@ namespace Api.Controllers.Products
 
         public ProductController(IProductService productService) => _productService = productService;
 
-        [AllowAnonymous]
+        [Authorize]
         [HttpGet("products")]
-        public async Task<IActionResult> GetProduct([FromBody]ProductRequest productRequest)
+        public async Task<IActionResult> GetProduct([FromQuery]ProductRequest productRequest)
         {
             if (UserId() == null)
                 return Unauthorized();
@@ -25,7 +25,7 @@ namespace Api.Controllers.Products
             return Ok(product);
         }
 
-        [AllowAnonymous]
+        [Authorize]
         [HttpPost("product")]
         public async Task<IActionResult> Post([FromBody]ProductRequest productRequest)
         {
@@ -36,7 +36,7 @@ namespace Api.Controllers.Products
             return Ok(user);
         }
 
-        [AllowAnonymous]
+        [Authorize]
         [HttpPut("product")]
         public IActionResult Put([FromBody]ProductRequest productRequest)
         {

@@ -66,15 +66,15 @@ namespace Domain.Users
         {
             var user = (await _userRepository.GetAsync(f => f.NickName == loginRequest.NickName.ToUpper())).FirstOrDefault();
 
+            if (user == null || string.IsNullOrEmpty(user.NickName))
+                user = _mapper.Map<User>(await AuthenticateAuth0Async(loginRequest));
+
             if (!VerifyPasswordHash(loginRequest.Password, user.PasswordHash, user.PasswordSalt))
             {
                 var responseError = _mapper.Map<UserResponse>(user);
                 responseError.AddMessages(user.Errors);
                 return responseError;
             };
-
-            if (user == null || string.IsNullOrEmpty(user.NickName))
-                user = _mapper.Map<User>(await AuthenticateAuth0Async(loginRequest));
 
             return _mapper.Map<UserResponse>(user);
         }
@@ -92,10 +92,8 @@ namespace Domain.Users
 
         public async Task<IEnumerable<UserResponse>> GetAllByAsync(UserRequest userRequest)
         {
-            var user = await _userRepository.GetAsync(f => f.Email.Contains(userRequest.Email.ToUpper())
-                || userRequest.FullName.Contains(userRequest.FullName.ToUpper())
-                || userRequest.FullName == userRequest.FullName.ToUpper()
-                || userRequest.Email.Contains(userRequest.Email.ToUpper()));
+            var user = await _userRepository.GetAsync(f =>
+                userRequest.FullName.Equals(userRequest.FullName.ToUpper()));
 
             return _mapper.Map<IEnumerable<UserResponse>>(user);
         }
